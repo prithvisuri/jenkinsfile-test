@@ -12,9 +12,9 @@ pipeline {
                 }
             }
         }
-        stage('maven-porject-deploy'){
+        stage('maven-project-deploy'){
             steps{
-                build job: 'maven-porject-deploy'
+                build job: 'maven-project-deploy'
 
             }
             
