@@ -1,7 +1,7 @@
 pipeline {
     agent any
     stages {
-        stage('Build Application') {
+        stage('maven-project-build') {
             steps {
                 sh 'mvn clean package'
             }
@@ -12,20 +12,12 @@ pipeline {
                 }
             }
         }
-        stage('Deploy in Staging Environment'){
+        stage('maven-project-build'){
             steps{
                 build job: 'Deploy_Application_Staging_Env'
 
             }
             
-        }
-        stage('Deploy to Production'){
-            steps{
-                timeout(time:5, unit:'DAYS'){
-                    input message:'Approve PRODUCTION Deployment?'
-                }
-                build job: 'Deploy_Application_Prod_Env'
-            }
         }
     }
 }
