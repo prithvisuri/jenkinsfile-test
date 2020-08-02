@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('maven-project-build') {
             steps {
-                sh 'mvn clean package'
+                sh 'mvn -f pon.xml clean package'
             }
             post {
                 success {
