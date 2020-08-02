@@ -1,7 +1,7 @@
 pipeline {
     agent any
     stages {
-        stage('maven-project-build') {
+        stage('jenkinsfile-pipeline1') {
             steps {
                 sh 'mvn -f pom.xml clean package'
             }
