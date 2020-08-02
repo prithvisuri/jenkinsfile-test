@@ -1,9 +1,9 @@
 pipeline {
     agent any
     stages {
-        stage('jenkinsfile-pipeline1') {
+        stage('Build Application') {
             steps {
-                sh 'mvn -f pom.xml clean package'
+                sh 'mvn clean package'
             }
             post {
                 success {
@@ -12,14 +12,15 @@ pipeline {
                 }
             }
         }
-        stage('maven-project-deploy'){
+        stage('Deploy in Staging Environment'){
             steps{
-                build job: 'maven-project-deploy'
-
+                build job: 'maven-project-deploy
+'
+ 
             }
             
         }
-        stage('maven-project-prod'){
+        stage('Deploy to Production'){
             steps{
                 timeout(time:5, unit:'DAYS'){
                     input message:'Approve PRODUCTION Deployment?'
