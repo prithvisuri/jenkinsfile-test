@@ -1,9 +1,9 @@
 pipeline {
     agent any
     stages {
-        stage('Build Application') {
+        stage('maven-project-build') {
             steps {
-                sh 'mvn -f java-tomcat-sample/pom.xml clean package'
+                sh 'mvn pom.xml clean package'
             }
             post {
                 success {
@@ -12,19 +12,19 @@ pipeline {
                 }
             }
         }
-        stage('Deploy in Staging Environment'){
+        stage('maven-porject-deploy'){
             steps{
-                build job: 'Deploy_Application_Staging_Env'
+                build job: 'maven-porject-deploy'
 
             }
             
         }
-        stage('Deploy to Production'){
+        stage('maven-project-prod'){
             steps{
                 timeout(time:5, unit:'DAYS'){
                     input message:'Approve PRODUCTION Deployment?'
                 }
-                build job: 'Deploy_Application_Prod_Env'
+                build job: 'maven-project-prod'
             }
         }
     }
